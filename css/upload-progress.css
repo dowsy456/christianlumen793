@@ -1,0 +1,24 @@
+/* Same 10px still-image blur as the call menu's unwatched screen preview. */
+.att-gallery > .att-item.att-upload {
+  width:320px; max-width:100%; min-width:0; min-height:156px;
+  height:156px; aspect-ratio:auto; overflow:hidden; border-radius:14px;
+  border:1px solid var(--line,rgba(145,168,191,.18)); background:var(--panel,#19232d);
+}
+.att-gallery .att-upload .att-dl { display:none !important; }
+.upload-card { position:relative; isolation:isolate; width:100%; height:156px; overflow:hidden; }
+.upload-preview { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transform:scale(1.1); filter:blur(10px); opacity:.65; pointer-events:none; }
+.upload-shade { position:absolute; inset:0; background:linear-gradient(180deg,var(--wall-floating, rgba(13,20,27,.88)),var(--wall-shade-soft, rgba(13,20,27,.18)) 62%,var(--wall-veil, rgba(13,20,27,.7))); pointer-events:none; }
+.upload-file-art { position:absolute; inset:27px 0 0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; color:var(--muted,#9caab8); opacity:.45; }
+.upload-file-art svg { height:60px; width:50px; }
+.upload-file-art span { font-size:10px; font-weight:700; letter-spacing:.12em; }
+.has-preview .upload-file-art { display:none; }
+.upload-card-head { position:relative; display:grid; grid-template-columns:62px minmax(0,1fr) 62px; align-items:start; gap:5px; padding:13px 12px; }
+.upload-name { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; text-align:center; font-size:12px; line-height:18px; font-weight:650; color:var(--text,#e9eef3); }
+.upload-meter { display:flex; flex-direction:column; gap:5px; min-width:0; padding-top:1px; }
+.upload-percent { font-variant-numeric:tabular-nums; font-size:11px; line-height:15px; font-weight:650; color:var(--text,#e9eef3); text-align:right; }
+.upload-track { display:block; height:4px; border-radius:3px; background:var(--surface-3,#222c38); overflow:hidden; }
+.upload-track-fill { display:block; width:0; height:100%; background:var(--control-blue,#548fce); border-radius:inherit; transition:width .35s linear; }
+.upload-card-foot { position:absolute; bottom:12px; left:13px; right:13px; display:flex; align-items:center; gap:6px; color:var(--muted,#a4b0bd); font-size:11px; line-height:16px; }
+.upload-card-foot svg { width:15px; height:15px; }
+.upload-size { margin-left:auto; font-variant-numeric:tabular-nums; }
+@media(prefers-reduced-motion:reduce) { .upload-track-fill { transition:none; } }

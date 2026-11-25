@@ -1,0 +1,16 @@
+.panel-update-log{display:grid;gap:10px;margin-top:22px;padding-top:20px;border-top:1px solid var(--stroke2)}
+.update-log-composer{border:1px solid var(--stroke2);border-radius:14px;background:var(--surface-2,rgba(255,255,255,.035));padding:12px 14px;transition:border-color .15s}
+.update-log-composer:focus-within{border-color:var(--accent,#7ba7ce)}
+.update-log-composer textarea{display:block;box-sizing:border-box;width:100%;min-height:132px;max-height:340px;resize:none;border:0;outline:0;padding:0;background:transparent;color:var(--text);font:inherit;line-height:1.55;white-space:pre-wrap}
+.update-log-composer textarea::placeholder{color:var(--muted)}
+.update-log-editor-actions{display:flex;align-items:center;justify-content:space-between;gap:14px;min-width:0}
+.update-log-editor-actions [role=status]{flex:1;min-width:0;overflow-wrap:anywhere}
+.update-log-editor-actions .btn{flex:none}
+#modal[data-size=update-log] .modal-card{width:min(580px,calc(100vw - 28px));max-height:min(720px,calc(100dvh - 40px))}
+#modal[data-size=update-log] #modal-body{overflow:auto;overscroll-behavior:contain}
+.update-log-content{font-size:15px;line-height:1.6;overflow-wrap:anywhere;color:var(--text)}
+.update-log-content p{margin:0;white-space:pre-wrap;min-height:1.6em}
+.update-log-content h1,.update-log-content h2,.update-log-content h3{margin:14px 0 5px;line-height:1.25;letter-spacing:-.02em;white-space:pre-wrap}
+.update-log-content>:first-child{margin-top:0}
+.update-log-content h1{font-size:25px}.update-log-content h2{font-size:21px}.update-log-content h3{font-size:17px}
+.update-log-content .update-log-subtext{font-size:12px;line-height:1.5;color:var(--muted)}

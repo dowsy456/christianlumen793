@@ -1,0 +1,134 @@
+/* An uploaded image supplies the two hues. Keep text, controls and elevated
+   surfaces on separate luminance scales so pale or monochrome images can be
+   used as well. Component styles refer to these roles with their original
+   fallback colors. The inactive/default theme uses the original cascade. */
+html[data-has-bg="1"] {
+  --wall-backdrop-filter: none;
+  --wall-h: var(--wallpaper-hue, 210);
+  --wall-s: var(--wallpaper-chroma, 36%);
+  --wall-surface-s: calc(var(--wall-s) * .48);
+  --wall-tone-offset: calc((var(--wallpaper-lightness, 50%) - 50%) * .05);
+  --wall-text-s: calc(var(--wall-s) * .44);
+  --wall-accent-s: min(90%, calc(var(--wall-s) * 1.08));
+  --wall-secondary-h: var(--wallpaper-secondary-hue, var(--wall-h));
+
+  --wall-well: hsl(var(--wall-h) var(--wall-surface-s) calc(7% + var(--wall-tone-offset)));
+  --wall-canvas: hsl(var(--wall-h) var(--wall-surface-s) calc(10% + var(--wall-tone-offset)));
+  --wall-panel: hsl(var(--wall-h) var(--wall-surface-s) calc(14% + var(--wall-tone-offset)));
+  --wall-raised: hsl(var(--wall-h) var(--wall-surface-s) calc(18% + var(--wall-tone-offset)));
+  --wall-hover: hsl(var(--wall-h) var(--wall-surface-s) 23%);
+  --wall-edge: hsl(var(--wall-h) var(--wall-surface-s) 36%);
+  --wall-text: hsl(var(--wall-h) var(--wall-text-s) 96%);
+  --wall-text-soft: hsl(var(--wall-h) var(--wall-text-s) 89%);
+  --wall-muted: hsl(var(--wall-h) var(--wall-text-s) 75%);
+  --wall-accent: hsl(var(--wall-h) var(--wall-accent-s) 77%);
+  --wall-accent-ink: hsl(var(--wall-h) var(--wall-surface-s) calc(10% + var(--wall-tone-offset)));
+  --wall-secondary: hsl(var(--wall-secondary-h) var(--wall-accent-s) 72%);
+  --wall-selected: color-mix(in srgb, var(--wall-panel), var(--wall-accent) 19%);
+  --wall-selected-hover: color-mix(in srgb, var(--wall-panel), var(--wall-accent) 30%);
+
+  --wall-line: hsl(var(--wall-h) var(--wall-text-s) 83% / .16);
+  --wall-line-strong: hsl(var(--wall-h) var(--wall-text-s) 83% / .32);
+  --wall-line-bold: hsl(var(--wall-h) var(--wall-text-s) 83% / .58);
+  --wall-wash: hsl(var(--wall-h) var(--wall-text-s) 90% / .055);
+  --wall-wash-strong: hsl(var(--wall-h) var(--wall-text-s) 90% / .11);
+  --wall-overlay: hsl(var(--wall-h) var(--wall-text-s) 90% / .26);
+  --wall-accent-line: hsl(var(--wall-h) var(--wall-accent-s) 77% / .55);
+  --wall-accent-wash: hsl(var(--wall-h) var(--wall-accent-s) 77% / .16);
+  --wall-accent-wash-strong: hsl(var(--wall-h) var(--wall-accent-s) 77% / .27);
+  --wall-shade-soft: hsl(var(--wall-h) var(--wall-surface-s) 7% / .28);
+  --wall-shade: hsl(var(--wall-h) var(--wall-surface-s) 7% / .55);
+  --wall-veil: hsl(var(--wall-h) var(--wall-surface-s) 10% / .78);
+  --wall-floating: hsl(var(--wall-h) var(--wall-surface-s) 12% / .96);
+
+  /* Panels are independently adjustable. Dialogs and menus keep a solid
+     reading surface when they cover other controls. The chat scrim accounts
+     for image dimming so the two treatments don't hide detail twice. */
+  --wall-glass: hsl(var(--wall-h) var(--wall-surface-s) calc(12% + var(--wall-tone-offset)) / var(--wallpaper-panel-opacity, .85));
+  --wall-chat-scrim: hsl(var(--wall-h) var(--wall-surface-s) 5% / clamp(.20, calc(.66 - var(--wallpaper-dim, .40) * .55), .66));
+
+  --bg: var(--wall-canvas);
+  --surface-1: var(--wall-canvas);
+  --surface-2: var(--wall-panel);
+  --surface-3: var(--wall-raised);
+  --stroke: var(--wall-line);
+  --stroke2: var(--wall-line-strong);
+  --text: var(--wall-text);
+  --muted: var(--wall-text-soft);
+  --muted2: var(--wall-muted);
+  --primary: var(--wall-accent);
+  --primary2: var(--wall-secondary);
+  --accent: var(--wall-accent);
+  --panel: var(--wall-panel);
+  --line: var(--wall-line);
+  --hover: var(--wall-hover);
+  --text-primary: var(--wall-text);
+  --ui-canvas: var(--wall-canvas);
+  --ui-panel: var(--wall-panel);
+  --ui-panel-2: var(--wall-raised);
+  --ui-panel-3: var(--wall-well);
+  --ui-border: var(--wall-line);
+  --ui-border-strong: var(--wall-line-strong);
+  --ui-text: var(--wall-text);
+  --ui-muted: var(--wall-muted);
+  --ui-blue: var(--wall-accent);
+  --ui-canvas-final: var(--wall-well);
+  --ui-surface-final: var(--wall-canvas);
+  --ui-surface-raised: var(--wall-raised);
+  --ui-surface-hover: var(--wall-hover);
+  --ui-line-final: var(--wall-line);
+  --ui-line-strong: var(--wall-line-strong);
+  --ui-copy-final: var(--wall-text);
+  --ui-copy-muted: var(--wall-muted);
+  --ui-accent-final: var(--wall-accent);
+  --people-surface: var(--wall-canvas);
+  --people-raised: var(--wall-raised);
+  --people-line: var(--wall-line);
+  --people-accent: var(--wall-accent);
+  --control-bg: var(--wall-raised);
+  --control-hover: var(--wall-hover);
+  --control-pressed: var(--wall-panel);
+  --control-border: var(--wall-line);
+  --control-border-hover: var(--wall-line-strong);
+  --control-text: var(--wall-text);
+  --control-muted: var(--wall-muted);
+  --control-blue: var(--wall-accent);
+  --control-blue-hover: color-mix(in srgb, var(--wall-accent), white 15%);
+  --control-blue-pressed: color-mix(in srgb, var(--wall-accent), black 12%);
+  --control-focus: var(--wall-accent);
+  --control-selected: var(--wall-selected);
+  --control-selected-hover: var(--wall-selected-hover);
+  --control-selected-border: var(--wall-accent-line);
+  --typing-background: linear-gradient(180deg, var(--wall-raised), var(--wall-panel));
+  --typing-text: var(--wall-text);
+  --typing-placeholder: var(--wall-muted);
+  --typing-border: var(--wall-line);
+  --typing-border-hover: var(--wall-line-strong);
+  --typing-border-focus: var(--wall-accent-line);
+  --app-scrollbar-thumb: var(--wall-edge);
+  --app-scrollbar-hover: var(--wall-muted);
+  --app-scrollbar-active: var(--wall-accent);
+  color-scheme: dark;
+  accent-color: var(--wall-accent);
+}
+
+html[data-has-bg="1"] body[data-has-bg="1"] .chat-main {
+  background: var(--wall-chat-scrim) !important;
+}
+html[data-has-bg="1"] body[data-companion-chat="1"] .chat-main {
+  background: var(--wall-canvas) !important;
+}
+html[data-has-bg="1"] body[data-has-bg="1"] :is(#sidebar-nav-surface, .members-sidebar, .composer, .chat-main > .room-toolbar),
+html[data-has-bg="1"] .home-dashboard .home-tool-card,
+html[data-has-bg="1"] .call-menu:not(.is-expanded) {
+  background: var(--wall-glass) !important;
+}
+html[data-has-bg="1"] .home-card-icon,
+html[data-has-bg="1"] .home-tool-card[data-home-tool] .home-card-icon {
+  color: var(--wall-secondary);
+  background: color-mix(in srgb, var(--wall-secondary) 13%, var(--wall-panel));
+}
+html[data-has-bg="1"] ::selection {
+  background-color: var(--wall-accent);
+  color: var(--wall-accent-ink);
+}

@@ -1,0 +1,33 @@
+/* Shared message formatting and explicit desktop edit actions. */
+.bubble-text strong,.room-preview-text strong,.home-room-preview-text strong{font-weight:800}
+.bubble-text em,.room-preview-text em,.home-room-preview-text em{font-style:italic}
+.bubble-text .message-heading{font-weight:800}
+.bubble-text .message-heading strong{font-weight:950;text-shadow:0.25px 0 currentColor,-0.25px 0 currentColor}
+.message-subtext strong{font-weight:800}
+.message-spoiler{border-radius:4px;background:var(--text,#dce6f1);color:transparent;cursor:pointer;box-decoration-break:clone;-webkit-box-decoration-break:clone;transition:background .14s ease,color .14s ease}
+.message-spoiler:not(.revealed) *{visibility:hidden}
+.message-spoiler.revealed{background:var(--wall-wash-strong, #879bb926);color:inherit}
+.message-spoiler:focus-visible{outline:2px solid var(--wall-accent, #83b8ef);outline-offset:2px}
+.message-spoiler-preview{font-style:italic}
+#composer-row.editing-message #btn-cancel-edit,#composer-row.editing-message #btn-send{width:42px!important;min-width:42px!important;height:42px!important;padding:0!important;display:flex;align-items:center;justify-content:center;flex:0 0 42px;border:1px solid var(--wall-line, #a0b7cf33)!important;border-radius:13px!important;background:var(--wall-hover, #243441)!important;color:var(--wall-text, #e5edf6)!important;box-shadow:none!important;transform:none!important;filter:none!important}
+#composer-row.editing-message #btn-cancel-edit:hover,#composer-row.editing-message #btn-send:hover{background:var(--wall-edge, #304658)!important;border-color:var(--wall-line-strong, #91bee05c)!important;box-shadow:none!important;transform:none!important}
+#btn-cancel-edit:disabled,#btn-send.composer-edit-action:disabled{opacity:.45}
+#btn-cancel-edit[hidden]{display:none}
+#btn-cancel-edit .composer-send-icon,#btn-send.composer-edit-action .composer-send-icon{display:block;width:21px;height:21px;line-height:0}
+#btn-cancel-edit svg{display:block;width:100%;height:100%}
+.composer-row.editing-message .composer-input-wrap{min-width:0;flex:1 1 auto}
+.composer-row.editing-message .composer-actions--left{display:flex}
+#composer-row.editing-message[data-edit-stacked="1"]{flex-wrap:wrap}
+#composer-row.editing-message[data-edit-stacked="1"] .composer-input-wrap{order:-1;flex:1 0 100%;width:100%}
+#composer-row.editing-message[data-edit-stacked="1"] .composer-actions--right{margin-left:auto}
+/* The optional sticker count must not cover the attachment panel title. */
+#files-bar .overlay-box-head{flex-wrap:wrap;column-gap:8px;row-gap:2px}
+#files-bar .overlay-panel-title{flex:0 0 auto}
+#files-bar .overlay-head-actions{margin-left:auto}
+.mention-toast-list{display:grid;gap:6px;max-height:220px;overflow:auto}
+.mention-toast-entry{display:flex;flex-wrap:wrap;gap:5px 10px;justify-content:space-between;text-align:left}
+.mention-toast-entry span:last-child{color:var(--wall-accent, #a5d2ff)}
+.reply-preview-snippet strong,.reply-target-message strong{font-weight:800}
+.reply-preview-snippet em,.reply-target-message em{font-style:italic}
+/* This is a timeline label; message text around it remains selectable. */
+.retained-pins-divider,.retained-pins-divider *{-webkit-user-select:none;user-select:none}

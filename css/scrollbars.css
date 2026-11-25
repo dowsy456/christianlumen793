@@ -1,0 +1,44 @@
+/* App-wide scrollbar contract. Load after feature styles in every first-party
+   document. New scrolling elements inherit this without an extra class. */
+:root {
+  --app-scrollbar-size:8px;
+  --app-scrollbar-thumb:#455e73;
+  --app-scrollbar-hover:#68879f;
+  --app-scrollbar-active:#8aaac2;
+  --app-scrollbar-track:transparent;
+}
+html:root, html:root * {
+  scrollbar-width:thin !important;
+  scrollbar-color:var(--app-scrollbar-thumb) var(--app-scrollbar-track) !important;
+}
+/* Chromium's standard scrollbar-color overrides its pseudo-elements. Use the
+   pseudo-elements here for rounded thumbs and no OS arrow buttons; Firefox
+   keeps the standard thin/color fallback above. */
+@supports selector(::-webkit-scrollbar) {
+  html:root, html:root * { scrollbar-width:auto !important; scrollbar-color:auto !important; }
+  html:root::-webkit-scrollbar, html:root *::-webkit-scrollbar {
+    display:block !important; width:var(--app-scrollbar-size) !important; height:var(--app-scrollbar-size) !important;
+    background:transparent !important;
+  }
+  html:root::-webkit-scrollbar-track, html:root *::-webkit-scrollbar-track {
+    background:var(--app-scrollbar-track) !important; border:0 !important; box-shadow:none !important;
+  }
+  html:root::-webkit-scrollbar-thumb, html:root *::-webkit-scrollbar-thumb {
+    min-height:24px; min-width:24px; border:2px solid transparent !important; border-radius:999px !important;
+    background:var(--app-scrollbar-thumb) !important; background-clip:padding-box !important; box-shadow:none !important;
+  }
+  html:root::-webkit-scrollbar-thumb:hover, html:root *::-webkit-scrollbar-thumb:hover {
+    background-color:var(--app-scrollbar-hover) !important;
+  }
+  html:root::-webkit-scrollbar-thumb:active, html:root *::-webkit-scrollbar-thumb:active {
+    background-color:var(--app-scrollbar-active) !important;
+  }
+  html:root::-webkit-scrollbar-button, html:root *::-webkit-scrollbar-button {
+    display:none !important; width:0 !important; height:0 !important;
+  }
+  html:root::-webkit-scrollbar-corner, html:root *::-webkit-scrollbar-corner { background:transparent !important; }
+}
+@media (forced-colors:active) {
+  html:root, html:root * { scrollbar-color:auto !important; }
+  html:root::-webkit-scrollbar-thumb, html:root *::-webkit-scrollbar-thumb { background-color:ButtonText !important; }
+}

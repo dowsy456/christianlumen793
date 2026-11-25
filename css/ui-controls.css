@@ -1,0 +1,495 @@
+/* Shared control system. Load after feature styles, before scrollbars.css.
+ * The important declarations live in one named layer so historical, unlayered
+ * !important overrides cannot reintroduce different shapes or hover effects.
+ * Layout/dimensions stay with their owning feature (including compact/mobile
+ * toolbars). Content cards, avatars, color swatches and game canvases are not
+ * action buttons. Semantic colors are defined below, never via new shadows.
+ */
+:root {
+  --control-radius: 10px;
+  --control-font-size: 13px;
+  --control-font-weight: 600;
+  --control-bg: #222c38;
+  --control-hover: #2b3948;
+  --control-pressed: #1c2733;
+  --control-border: rgba(145,171,201,.22);
+  --control-border-hover: rgba(145,171,201,.38);
+  --control-text: #dfe9f4;
+  --control-muted: #9aadc2;
+  --control-blue: #548fce;
+  --control-blue-hover: #639fdc;
+  --control-blue-pressed: #477fb9;
+  --control-focus: #9ac9fc;
+  --control-selected: #243b52;
+  --control-selected-hover: #2d4863;
+  --control-selected-border: #5c97da70;
+  --control-danger: #f2a4aa;
+  --control-danger-bg: #462d36;
+  --control-danger-hover: #563540;
+}
+
+@layer ui-controls {
+  /* Native form controls otherwise fall back to a different browser font.
+   * Keep content editors, monospace values and font-preview options intentional. */
+  body :where(button, select, input, textarea):not(:where(
+    .emoji-choice, .font-dd-opt, .notepad-editor, .notepad-textarea,
+    #notepad-textarea, #notepad-editor, .database-value, .database-tree input,
+    .image-editor-hex-input, .image-editor-text-entry, .media-document-text, [data-preserve-font]
+  )) { font-family: var(--font-ui) !important; }
+
+  :where(.btn, .icon-btn, .chat-icon-button, .modal-close,
+    .games-stage-action, .games-stage-window-action, .calendar-button,
+    .voice-btn, .sticker-upload-btn, .room-mode-btn, .settings-inline-button,
+    .settings-choice, .html-hub-card-options, .call-control, .sidebar-dock-button,
+    .rooms-add, .rooms-mode-toggle, .composer-tool-btn, .room-toolbar-action,
+    .overlay-close, .file-remove, .poll-action-button, .user-profile-close, .user-profile-more,
+    .chat-popup-close, .reply-bar-close, .voice-close, .media-zoom-btn, .vpu-btn,
+    .call-audio-action, .call-device-access, .image-editor-color-button,
+    .home-new-room, .side-btn, .settings-tab, .html-hub-nav-item, .mobile-header-action,
+    .msg-menu-btn, .custom-select-opt, .font-dd-opt, .room-search-jump,
+    .image-editor-edit-text, .sched-preview-btn, .vpu-rate, .boot-error button, #room-search-more) {
+    --button-bg: var(--control-bg);
+    --button-hover: var(--control-hover);
+    --button-pressed: var(--control-pressed);
+    --button-border: var(--control-border);
+    --button-hover-border: var(--control-border-hover);
+    --button-color: var(--control-text);
+    appearance: none !important;
+    border-radius: var(--control-radius) !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: var(--button-border) !important;
+    background: var(--button-bg) !important;
+    color: var(--button-color) !important;
+    font-weight: var(--control-font-weight) !important;
+    letter-spacing: normal !important;
+    text-shadow: none !important;
+    text-transform: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease !important;
+    touch-action: manipulation;
+  }
+  :where(.btn, .icon-btn, .chat-icon-button, .modal-close,
+    .games-stage-action, .games-stage-window-action, .calendar-button,
+    .voice-btn, .sticker-upload-btn, .room-mode-btn, .settings-inline-button,
+    .settings-choice, .html-hub-card-options, .call-control, .sidebar-dock-button,
+    .rooms-add, .rooms-mode-toggle, .composer-tool-btn, .room-toolbar-action,
+    .overlay-close, .file-remove, .poll-action-button, .user-profile-close, .user-profile-more,
+    .chat-popup-close, .reply-bar-close, .voice-close, .media-zoom-btn, .vpu-btn,
+    .call-audio-action, .call-device-access, .image-editor-color-button,
+    .home-new-room, .side-btn, .settings-tab, .html-hub-nav-item, .mobile-header-action,
+    .msg-menu-btn, .custom-select-opt, .font-dd-opt, .room-search-jump,
+    .image-editor-edit-text, .sched-preview-btn, .vpu-rate, .boot-error button, #room-search-more):hover:not(:disabled):not([aria-disabled="true"]) {
+    background: var(--button-hover) !important;
+    border-color: var(--button-hover-border) !important;
+  }
+  :where(.btn, .icon-btn, .chat-icon-button, .modal-close,
+    .games-stage-action, .games-stage-window-action, .calendar-button,
+    .voice-btn, .sticker-upload-btn, .room-mode-btn, .settings-inline-button,
+    .settings-choice, .html-hub-card-options, .call-control, .sidebar-dock-button,
+    .rooms-add, .rooms-mode-toggle, .composer-tool-btn, .room-toolbar-action,
+    .overlay-close, .file-remove, .poll-action-button, .user-profile-close, .user-profile-more,
+    .chat-popup-close, .reply-bar-close, .voice-close, .media-zoom-btn, .vpu-btn,
+    .call-audio-action, .call-device-access, .image-editor-color-button,
+    .home-new-room, .side-btn, .settings-tab, .html-hub-nav-item, .mobile-header-action,
+    .msg-menu-btn, .custom-select-opt, .font-dd-opt, .room-search-jump,
+    .image-editor-edit-text, .sched-preview-btn, .vpu-rate, .boot-error button, #room-search-more):active:not(:disabled):not([aria-disabled="true"]) {
+    background: var(--button-pressed) !important;
+  }
+  :where(.btn, .icon-btn, .chat-icon-button, .modal-close,
+    .games-stage-action, .games-stage-window-action, .calendar-button,
+    .voice-btn, .sticker-upload-btn, .room-mode-btn, .settings-inline-button,
+    .settings-choice, .html-hub-card-options, .call-control, .sidebar-dock-button,
+    .rooms-add, .rooms-mode-toggle, .composer-tool-btn, .room-toolbar-action,
+    .overlay-close, .file-remove, .poll-action-button, .user-profile-close, .user-profile-more,
+    .chat-popup-close, .reply-bar-close, .voice-close, .media-zoom-btn, .vpu-btn,
+    .call-audio-action, .call-device-access, .image-editor-color-button,
+    .home-new-room, .side-btn, .settings-tab, .html-hub-nav-item, .mobile-header-action,
+    .msg-menu-btn, .custom-select-opt, .font-dd-opt, .room-search-jump,
+    .image-editor-edit-text, .sched-preview-btn, .vpu-rate, .boot-error button, #room-search-more):focus-visible {
+    outline: 2px solid var(--control-focus) !important;
+    outline-offset: 2px !important;
+  }
+  :where(.btn, .icon-btn, .chat-icon-button, .modal-close,
+    .games-stage-action, .games-stage-window-action, .calendar-button,
+    .voice-btn, .sticker-upload-btn, .room-mode-btn, .settings-inline-button,
+    .settings-choice, .html-hub-card-options, .call-control, .sidebar-dock-button,
+    .rooms-add, .rooms-mode-toggle, .composer-tool-btn, .room-toolbar-action,
+    .overlay-close, .file-remove, .poll-action-button, .user-profile-close, .user-profile-more,
+    .chat-popup-close, .reply-bar-close, .voice-close, .media-zoom-btn, .vpu-btn,
+    .call-audio-action, .call-device-access, .image-editor-color-button,
+    .home-new-room, .side-btn, .settings-tab, .html-hub-nav-item, .mobile-header-action,
+    .msg-menu-btn, .custom-select-opt, .font-dd-opt, .room-search-jump,
+    .image-editor-edit-text, .sched-preview-btn, .vpu-rate, .boot-error button, #room-search-more):is(:disabled, [aria-disabled="true"]) {
+    opacity: .45 !important;
+    cursor: default !important;
+    box-shadow: none !important;
+  }
+
+  :where(.btn, .home-new-room, .voice-btn, .calendar-button, .room-mode-btn,
+    .settings-inline-button, .settings-choice, .settings-tab, .html-hub-nav-item,
+    .msg-menu-btn, .custom-select-opt, .font-dd-opt, .room-search-jump,
+    .call-device-access, .call-audio-action, .image-editor-color-button,
+    .image-editor-edit-text, .games-stage-action:not(.games-stage-window-action),
+    .sched-preview-btn, .vpu-rate, .boot-error button, #room-search-more) {
+    font-size: var(--control-font-size) !important;
+  }
+
+  .custom-select-opt:not([data-preserve-font]) { font-family: var(--font-ui) !important; }
+
+  /* Compact toolbars have fixed hit areas. Legacy six-pixel padding plus
+   * the shared border would otherwise push a 20px glyph off-center in 32px. */
+  :where(.room-toolbar .room-toolbar-action,
+    .room-toolbar .call-menu-head-actions .icon-btn,
+    .room-toolbar #room-search-toggle) { padding: 0 !important; }
+
+  /* Text buttons share one rhythm. Compact variants retain their feature's
+   * sizing, while using the same border, radius, weight and palette. */
+  :where(.btn, .home-new-room, .voice-btn, .call-device-access) {
+    min-height: 38px;
+    padding: 9px 13px;
+    line-height: 1.35 !important;
+  }
+  :where(.btn.tiny, .calendar-button, .image-editor-color-button,
+    .room-search-jump, .msg-menu-btn, .custom-select-opt, .font-dd-opt) {
+    --control-font-size: 12px;
+  }
+  :where(.btn, .home-new-room, .voice-btn, .calendar-button, .settings-tab,
+    .settings-choice, .side-btn, .sidebar-dock-button, .rooms-add,
+    .rooms-mode-toggle, .chat-icon-button, .modal-close, .sticker-upload-btn,
+    .call-control, .composer-tool-btn, .games-stage-action,
+    .games-stage-window-action, .user-profile-close, .user-profile-more,
+    .overlay-close, .file-remove, .chat-popup-close, .reply-bar-close,
+    .icon-btn:not(.att-dl), .poll-action-button, .voice-close, .media-zoom-btn, .vpu-btn, .sched-preview-btn, .vpu-rate, .html-hub-card-options, .msg-menu-btn) {
+    /* Stable targets: no shrinking, jumping or green/blue bloom on hover. */
+    transform: none !important;
+  }
+
+  :where(.btn.primary, .poll-action-button.primary, .home-new-room, .voice-btn:not(.secondary):not(.ghost),
+    .boot-error button) {
+    --button-bg: var(--control-blue);
+    --button-hover: var(--control-blue-hover);
+    --button-pressed: var(--control-blue-pressed);
+    --button-border: var(--wall-accent-line, #88b9ec70);
+    --button-hover-border: var(--wall-accent-line, #a2cdf49c);
+    --button-color: var(--wall-accent-ink, #fff);
+  }
+  :where(.btn.danger, .sticker-delete-action) {
+    --button-bg: var(--control-danger-bg);
+    --button-hover: var(--control-danger-hover);
+    --button-pressed: #3a2530;
+    --button-border: #e5808b55;
+    --button-hover-border: #ee97a075;
+    --button-color: var(--control-danger);
+  }
+
+  /* Navigation, tabs and menu rows use the same geometry with a quiet fill.
+   * Their selected state remains distinct from a primary action. */
+  :where(.side-btn:not(.rooms-add), .settings-tab, .html-hub-nav-item, .msg-menu-btn,
+    .custom-select-opt, .font-dd-opt, .home-filters .btn,
+    .composer-more-actions .composer-tool-btn) {
+    --button-bg: transparent;
+    --button-hover: var(--control-bg);
+    --button-pressed: var(--control-pressed);
+    --button-border: transparent;
+    --button-hover-border: transparent;
+    --button-color: var(--control-muted);
+  }
+  :where(.msg-menu-btn, .custom-select-opt, .font-dd-opt) {
+    --button-color: var(--control-text);
+  }
+  :where(.side-btn.is-selected, .side-btn.active,
+    .settings-tab[aria-selected="true"], .html-hub-nav-item.is-active,
+    .custom-select-opt.is-selected, .font-dd-opt.is-selected,
+    .home-filters .btn.primary, .settings-choice[aria-pressed="true"],
+    .room-mode-btn.is-active, .image-editor-tool[aria-pressed="true"],
+    .chat-icon-button[aria-pressed="true"], .icon-btn[aria-pressed="true"],
+    .modal-close[aria-pressed="true"], .vpu-btn[aria-pressed="true"],
+    .vpu[data-loop="1"] .vpu-loop, .vpu[data-menu="1"] .vpu-menu,
+    #time-display-stage .modal-head-actions button[aria-pressed="true"],
+    .sched-preview-btn.is-active, .vpu-rate[data-active="1"], .msg-menu-btn[aria-checked="true"],
+    .call-settings-toggle[aria-expanded="true"]) {
+    --button-bg: var(--control-selected);
+    --button-hover: var(--control-selected-hover);
+    --button-pressed: var(--wall-selected, #203348);
+    --button-border: var(--control-selected-border);
+    --button-hover-border: var(--wall-accent-line, #83b7eb88);
+    --button-color: var(--wall-text, #dceeff);
+  }
+
+  /* Keep media, saved stickers and call state colors meaningful. */
+  :where(.sticker-save-action.is-saved) {
+    --button-bg: #514014;
+    --button-hover: #64501a;
+    --button-pressed: #423511;
+    --button-border: #ffd65a6b;
+    --button-hover-border: #ffd65a99;
+    --button-color: #ffd65a;
+  }
+  :where(.call-control.is-active, .sidebar-call-actions .sidebar-dock-button.is-active) {
+    --button-bg: #47333a;
+    --button-hover: #59414a;
+    --button-pressed: #3c2c32;
+    --button-border: #9f657750;
+    --button-hover-border: #bb829566;
+    --button-color: #f3bfce;
+  }
+  :where(.call-control-share.is-active, .call-control-camera.is-active, .call-control-overlay.is-active,
+    .sidebar-call-actions .sidebar-call-overlay.is-active, .sidebar-call-actions .sidebar-call-share.is-active) {
+    --button-bg: #23473d;
+    --button-hover: #2c584b;
+    --button-pressed: #1d3c33;
+    --button-border: #6bc5a84d;
+    --button-hover-border: #82dbbc66;
+    --button-color: #b1f1d9;
+  }
+  #sidebar-media-menu .composer-tool-btn.is-active { --button-color: #55b98a; }
+  :where(.call-control-join) {
+    --button-bg: #248b60;
+    --button-hover: #2da572;
+    --button-pressed: #20754f;
+    --button-border: #36aa7a;
+    --button-hover-border: #43ba89;
+    --button-color: #fff;
+  }
+  :where(.call-control-leave, .sidebar-call-leave) {
+    --button-bg: #ba434c;
+    --button-hover: #ce535c;
+    --button-pressed: #a33a42;
+    --button-border: #ce5960;
+    --button-hover-border: #e57b81;
+    --button-color: #fff;
+  }
+  :where(.call-control.call-in-call) {
+    --button-bg: transparent;
+    --button-hover: var(--wall-hover, #263240);
+    --button-pressed: var(--button-hover);
+    --button-hover-border: transparent;
+    transition: none !important;
+    --button-border: transparent;
+    --button-color: var(--control-muted);
+  }
+  /* Split controls must remain joined; do not apply four rounded corners. */
+  :where(.call-control-split, .sidebar-call-split) > :where(.call-control, .sidebar-dock-button):first-child {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-right-width: 0 !important;
+  }
+  :where(.call-control-split, .sidebar-call-split) > .call-settings-toggle {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+  }
+
+  /* The send action previously inherited a blue/green gradient and glow. */
+  #btn-send {
+    background: var(--control-blue) !important;
+    border: 1px solid var(--wall-accent-line, #88b9ec70) !important;
+    color: var(--wall-accent-ink, #fff) !important;
+  }
+  #btn-send:hover:not(:disabled) { background: var(--control-blue-hover) !important; }
+  #composer-row.editing-message :is(#btn-cancel-edit, #btn-send) {
+    background: var(--control-bg) !important;
+    border-color: var(--control-border) !important;
+    color: var(--control-text) !important;
+  }
+  #composer-row.editing-message :is(#btn-cancel-edit, #btn-send):hover:not(:disabled) {
+    background: var(--control-hover) !important;
+  }
+
+  /* Playback and date/picker controls retain their specialized fills and
+   * hit areas, but use the same shape, font, focus and quiet interaction. */
+  :where(.calendar-date-picker-pop button, .chat-audio-player-btn,
+    .voice-preview-play, .spotify-player-button, .poll-text-button:not(.poll-view-votes),
+    .database-toggle, button.eye) {
+    border-radius: var(--control-radius) !important;
+    font-family: var(--font-ui) !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+  :where(.calendar-date-picker-pop button, .chat-audio-player-btn,
+    .voice-preview-play, .spotify-player-button, .poll-text-button,
+    .database-toggle, button.eye):focus-visible {
+    outline: 2px solid var(--control-focus) !important;
+    outline-offset: 2px !important;
+  }
+
+  /* Inputs retain their native semantics, with the same type as UI labels. */
+  :where(.custom-select-btn, .calendar-month-select, .calendar-date-picker-trigger) {
+    font-family: var(--font-ui) !important;
+    font-weight: var(--control-font-weight) !important;
+    border-radius: var(--control-radius) !important;
+    letter-spacing: normal !important;
+  }
+  :where(.label, .settings-panel-title, .settings-toggle-title,
+    .panel-section-title, .chat-popup-heading strong, .voice-title,
+    .home-eyebrow, .html-hub-sidebar-title) {
+    font-family: var(--font-ui) !important;
+    letter-spacing: normal !important;
+    text-transform: none !important;
+  }
+
+  /* The reference tooltip is the existing classmates/member-status surface.
+   * Placement, visibility and rich content remain owned by their renderers. */
+  :where(.sidebar-tooltip, .call-viewers-tooltip, .timestamp-tooltip, .online-tooltip) {
+    border: 1px solid var(--wall-line, rgba(144,166,190,.18)) !important;
+    border-radius: 9px !important;
+    background: var(--wall-well, #0d1319) !important;
+    color: var(--wall-text, #eaf1f8) !important;
+    box-shadow: 0 10px 26px rgba(0,0,0,.32) !important;
+    padding: 7px 9px !important;
+    font-family: var(--font-ui) !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    line-height: 1.4 !important;
+    letter-spacing: normal !important;
+    text-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .member-activities-tooltip .member-classmates-tooltip {
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  :where(.room-toolbar, .composer-row) [data-ui-tooltip]::after,
+  .call-control[data-ui-tooltip]::after { display: none !important; }
+  body.call-audio-settings-open #sidebar-tooltip:not([hidden]) { display: block !important; }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where(.btn, .icon-btn, .chat-icon-button, .modal-close,
+    .games-stage-action, .games-stage-window-action, .calendar-button,
+    .voice-btn, .sticker-upload-btn, .room-mode-btn, .settings-inline-button,
+    .settings-choice, .html-hub-card-options, .call-control, .sidebar-dock-button,
+    .rooms-add, .rooms-mode-toggle, .composer-tool-btn, .room-toolbar-action,
+    .overlay-close, .file-remove, .poll-action-button, .user-profile-close, .user-profile-more,
+    .chat-popup-close, .reply-bar-close, .voice-close, .media-zoom-btn, .vpu-btn,
+    .call-audio-action, .call-device-access, .image-editor-color-button,
+    .home-new-room, .side-btn, .settings-tab, .html-hub-nav-item, .mobile-header-action,
+    .msg-menu-btn, .custom-select-opt, .font-dd-opt, .room-search-jump,
+    .image-editor-edit-text, .sched-preview-btn, .vpu-rate, .boot-error button, #room-search-more) { transition: none !important; }
+  }
+}
+
+/* Every typing field, including fields created after startup, shares the
+ * existing composer/search surface. Width, height, padding, scroll behavior
+ * and automatic growth remain owned by the feature. Native pickers, sliders,
+ * toggles and file buttons are deliberately not typing surfaces. These rules
+ * stay in the application document; embedded HTML pages/games keep their CSS.
+ */
+:root {
+  --typing-background: linear-gradient(180deg,rgba(31,42,54,.98),rgba(26,36,47,.98));
+  --typing-border: rgba(137,160,186,.20);
+  --typing-border-hover: rgba(145,171,201,.34);
+  --typing-border-focus: rgba(126,163,204,.70);
+  --typing-radius: 17px;
+  --typing-text: #edf3f9;
+  --typing-placeholder: #748194;
+}
+@layer ui-controls {
+  body :where(input:not([type=hidden],[type=button],[type=submit],[type=reset],[type=image],[type=checkbox],[type=radio],[type=range],[type=color],[type=file]), textarea, [contenteditable]:not([contenteditable=false])) {
+    resize: none !important;
+    -webkit-user-drag: none !important;
+    -webkit-app-region: no-drag !important;
+    -webkit-user-select: text !important;
+    user-select: text !important;
+    cursor: text;
+  }
+  body :where([contenteditable]:not([contenteditable=false])) * {
+    -webkit-user-drag: none !important;
+    -webkit-app-region: no-drag !important;
+  }
+
+  /* An on-image annotation is editable image content, with an exact chosen
+   * font/color/scale. Preserve that WYSIWYG preview instead of painting a form
+   * background over the image. Its toolbar fields use the ordinary surface. */
+  body :where(input:not([type=hidden],[type=button],[type=submit],[type=reset],[type=image],[type=checkbox],[type=radio],[type=range],[type=color],[type=file]), textarea, [contenteditable]:not([contenteditable=false])):not(:where(.image-editor-text-entry, .composer-input, .app-search-input, .update-log-composer textarea, .image-editor-size-field input)),
+  body :where(.composer-row, .app-search-field, .update-log-composer, .image-editor-size-field) {
+    background: var(--typing-background) !important;
+    border: 1px solid var(--typing-border) !important;
+    border-radius: var(--typing-radius) !important;
+    color: var(--typing-text) !important;
+    outline: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  body :where(input:not([type=hidden],[type=button],[type=submit],[type=reset],[type=image],[type=checkbox],[type=radio],[type=range],[type=color],[type=file]), textarea, [contenteditable]:not([contenteditable=false])):not(:where(.image-editor-text-entry, .composer-input, .app-search-input, .update-log-composer textarea, .image-editor-size-field input)):hover:not(:disabled),
+  body :where(.composer-row, .app-search-field, .update-log-composer, .image-editor-size-field):hover {
+    border-color: var(--typing-border-hover) !important;
+  }
+  body :where(input:not([type=hidden],[type=button],[type=submit],[type=reset],[type=image],[type=checkbox],[type=radio],[type=range],[type=color],[type=file]), textarea, [contenteditable]:not([contenteditable=false])):not(:where(.image-editor-text-entry, .composer-input, .app-search-input, .update-log-composer textarea, .image-editor-size-field input)):is(:focus,:focus-visible),
+  body :where(.composer-row, .app-search-field, .update-log-composer, .image-editor-size-field):focus-within {
+    border-color: var(--typing-border-focus) !important;
+    box-shadow: 0 0 0 2px var(--wall-line, rgba(126,163,204,.13)) !important;
+  }
+  body :where(input:not([type=hidden],[type=button],[type=submit],[type=reset],[type=image],[type=checkbox],[type=radio],[type=range],[type=color],[type=file]), textarea, [contenteditable]:not([contenteditable=false])):not(:where(.image-editor-text-entry)) {
+    box-sizing: border-box;
+    min-width: 0;
+    padding: 8px 12px;
+    caret-color: var(--typing-text) !important;
+  }
+  body :where(input,textarea):not(.image-editor-text-entry)::placeholder {
+    color: var(--typing-placeholder) !important;
+    opacity: 1 !important;
+  }
+  /* Already-grouped controls have one surrounding field, not nested borders. */
+  body :where(.composer-input, .app-search-input, .update-log-composer textarea, .image-editor-size-field input),
+  body :where(.composer-input, .app-search-input, .update-log-composer textarea, .image-editor-size-field input):is(:focus,:focus-visible) {
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    outline: none !important;
+    box-shadow: none !important;
+    color: var(--typing-text) !important;
+  }
+  body :where(input:not([type=hidden],[type=button],[type=submit],[type=reset],[type=image],[type=checkbox],[type=radio],[type=range],[type=color],[type=file]),textarea,[contenteditable]:not([contenteditable=false]))[aria-invalid=true],
+  body :where(.image-editor-size-field):has(input[aria-invalid=true]) {
+    border-color: var(--danger,#dc555c) !important;
+  }
+}
+
+/* Shared web -5: quiet toolbar actions, balanced rail and matching room controls. */
+@layer ui-controls {
+  #btn-room-plus, #rooms-mode-toggle {
+    --button-bg: var(--control-bg);
+    --button-hover: var(--control-hover);
+    --button-color: var(--control-text);
+    --button-border: var(--control-border);
+  }
+  #btn-room-plus .side-ico, #rooms-mode-toggle .side-ico { color: inherit !important; }
+  :is(.room-toolbar .room-toolbar-action, .room-toolbar .call-menu-head-actions .icon-btn,
+      .composer-tool-btn, .sidebar-account-actions > .sidebar-dock-button) {
+    --button-bg: transparent;
+    --button-border: transparent;
+    --button-hover: var(--control-bg);
+    --button-hover-border: transparent;
+    --button-color: var(--control-text);
+  }
+  .room-toolbar #btn-side-call {
+    --button-bg: transparent; --button-border: transparent;
+    --button-hover: var(--control-bg); --button-hover-border: transparent;
+    --button-color: var(--control-text);
+  }
+  .room-toolbar #btn-side-call .side-ico { color: inherit !important; }
+  .room-toolbar #btn-side-call:is(.call-in,.call-active) { --button-color: var(--ui-green,#73dfbd); }
+  #sidebar-nav-surface .sidebar-icon-rail > :is(.side-btn,#btn-time-display) {
+    display: grid !important; place-items: center !important;
+    grid-template-columns: minmax(0,1fr) !important;
+    grid-template-rows: minmax(0,1fr) !important;
+    gap: 0 !important; padding: 0 !important;
+    width: 44px !important; min-width: 44px !important;
+    height: 44px !important; min-height: 44px !important;
+    flex: 0 0 44px !important;
+  }
+  #sidebar-nav-surface .sidebar-icon-rail :is(.side-ico,.time-display-rail-icon) {
+    display: grid !important; place-items: center !important;
+    width: 22px !important; height: 22px !important; margin: 0 !important;
+    line-height: 0 !important;
+  }
+  #sidebar-nav-surface .sidebar-icon-rail svg { display: block !important; width:22px !important; height:22px !important; }
+}
