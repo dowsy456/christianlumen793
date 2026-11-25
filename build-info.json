@@ -1,0 +1,11 @@
+{
+  "desktopVersion": "2.0.7",
+  "webVersion": "2026.11.24-2",
+  "assetRevision": "20261124-rooms-media",
+  "createdAt": "2026-11-25T03:28:50.459Z",
+  "source": "Room navigation, selective share audio, polls and media controls",
+  "nativeBridge": 1,
+  "mobileRevision": 2026112402,
+  "nativeBinaryChanged": true,
+  "nativeSourceChanged": true
+}
