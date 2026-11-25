@@ -1,0 +1,48 @@
+/* The game canvases, player and ability colors retain their gameplay meaning.
+   Only the two first-party documents load this sheet. */
+:root[data-has-bg="1"] {
+  --game-tint: var(--wallpaper-hue, 215);
+  --game-chroma: var(--wallpaper-chroma, 35%);
+  --game-ink: hsl(var(--game-tint) calc(var(--game-chroma) * .46) 10%);
+  --game-frame: hsl(var(--game-tint) calc(var(--game-chroma) * .58) 24%);
+  --game-paper: hsl(var(--game-tint) calc(var(--game-chroma) * .54) 91%);
+  --game-accent: hsl(var(--game-tint) var(--game-chroma) 72%);
+  --ink: var(--game-ink);
+  --ink2: var(--game-ink);
+  --paper: var(--game-paper);
+  --teal: var(--game-accent);
+  --teal-dark: var(--game-frame);
+  --app-scrollbar-thumb: hsl(var(--game-tint) calc(var(--game-chroma) * .4) 54%);
+  --app-scrollbar-hover: var(--game-accent);
+  --app-scrollbar-active: var(--game-paper);
+}
+html[data-has-bg="1"] :is(.menu-card, .settings-shell, .ability-browser, .menu-stats) {
+  background: linear-gradient(145deg, var(--game-frame), var(--game-ink));
+  color: var(--game-paper);
+  border-color: var(--game-ink);
+}
+html[data-has-bg="1"] :is(.menu-kicker, .menu-subtitle) { color: var(--game-paper); }
+html[data-has-bg="1"] .game:has(.sky-pattern) {
+  background: linear-gradient(160deg, var(--game-frame), var(--game-accent));
+}
+html[data-has-bg="1"] :is(.card, .player-card, .score-box, .round-badge, .timer-badge,
+  .room-pill, .network-pill, .status-copy, .color-palette, .leave-confirm-card, .ability-detail) {
+  background: var(--game-paper);
+  color: var(--game-ink);
+}
+html[data-has-bg="1"] :is(.cartoon-btn, .activity-control, .modal-btn, .touch-controls button) {
+  background: var(--game-paper);
+  color: var(--game-ink);
+  border-color: var(--game-ink);
+}
+html[data-has-bg="1"] :is(.cartoon-btn.primary, .cartoon-btn.cyan, .modal-btn.primary,
+  .activity-control[aria-pressed="true"], .play-button) {
+  background: var(--game-accent);
+  color: var(--game-ink);
+  text-shadow: none;
+}
+html[data-has-bg="1"] .play-button {
+  -webkit-text-stroke: 0;
+  box-shadow: inset 0 -.7cqw 0 var(--game-frame), 0 .6cqw 0 var(--game-ink);
+}
+html[data-has-bg="1"] button:focus-visible { outline-color: var(--game-accent); }
