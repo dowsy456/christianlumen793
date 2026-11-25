@@ -1,0 +1,41 @@
+:root{color-scheme:dark;font-family:Inter,"Segoe UI",sans-serif;color:#f1f4f7}*{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;background:transparent;overflow:hidden}#rings{display:flex;flex-direction:column;gap:10px;max-height:100vh;overflow-x:hidden;overflow-y:auto;padding:6px;scrollbar-width:none}.ring{flex:none;display:flex;align-items:center;flex-direction:column;gap:10px;height:170px;padding:14px 12px;border:1px solid #39454f;border-radius:16px;background:#1c262e;box-shadow:0 2px 5px #0005;animation:enter .2s ease;transition:opacity .13s ease,transform .2s ease}#rings::-webkit-scrollbar{display:none;width:0;height:0}.ring.leaving{opacity:0;transform:translateX(16px);pointer-events:none;animation:none}.name{font-size:14px;font-weight:650;line-height:20px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.room-icon{position:relative;width:48px;height:48px;border-radius:14px;overflow:hidden;flex:none;background:#344550;display:grid;place-items:center;font-size:22px;font-weight:600}.room-icon img{width:100%;height:100%;object-fit:cover;transform-origin:center}.controls{display:flex;gap:10px}.control{display:grid;place-items:center;width:54px;height:44px;padding:0;border:1px solid;border-radius:12px;color:#fff;cursor:pointer;transition:background .15s,transform .15s}.control:hover{filter:brightness(1.04)}.control:focus-visible{outline:2px solid #fff;outline-offset:3px}.control svg{height:24px;width:24px}.decline{border-color:#ce5960;background:#ba434c}.decline:hover{border-color:#e57b81;background:#ce535c}.join{background:#248b60;border-color:#36aa7a}.join:hover{background:#2da572;border-color:#43ba89}@keyframes enter{from{opacity:0}to{opacity:1}}@media(prefers-reduced-motion:reduce){.ring{animation:none;transition:none}}
+.ring.pointer-through:not(.leaving){opacity:.3}
+.ping-mode #rings{height:100vh;justify-content:flex-end;gap:8px}.ring.ping{position:relative;flex-direction:row;align-items:center;height:100px;padding:14px 32px 14px 12px;gap:10px;cursor:pointer}.ping .room-icon{width:42px;height:42px;border-radius:12px}.ping-copy{min-width:0;flex:1}.ping .name{font-size:12px;color:#b5c4d0;line-height:18px}.ping-user{font-size:13px;font-weight:650;line-height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ping-preview{font-size:12px;color:#d7e0e7;line-height:17px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}.ping-preview[hidden]{display:none}.ping-close{position:absolute;top:6px;right:7px;width:24px;height:24px;display:grid;place-items:center;border:0;border-radius:6px;background:transparent;color:#b5c4d0;font-size:20px;line-height:1;cursor:pointer}.ping-close:hover{background:#344550;color:#fff}.ping:focus-visible,.ping-close:focus-visible{outline:2px solid #62b896;outline-offset:-3px}.ping:not(.leaving){opacity:1}
+.earlier-mentions{flex:none;border:1px solid #39454f;border-radius:12px;background:#1c262e;overflow:hidden}.earlier-mentions[hidden]{display:none}.earlier-button{border:0;background:transparent;color:#bad4e9;font:600 13px "Segoe UI",sans-serif;min-height:38px;width:100%;text-align:left;padding:8px 12px;cursor:pointer}.earlier-button:hover{background:#2b3b49}.earlier-button:focus-visible,.earlier-row button:focus-visible{outline:2px solid #73b7ef;outline-offset:-3px}.earlier-list{max-height:calc(100vh - 58px);overflow:auto;padding:2px 6px 6px;scrollbar-width:thin}.earlier-list[hidden]{display:none}.earlier-row{display:flex;border-top:1px solid #344550;align-items:stretch}.earlier-row button{border:0;background:transparent;color:#dae5ee;cursor:pointer}.earlier-open-message{min-width:0;flex:1;text-align:left;padding:9px 6px;font:12px "Segoe UI",sans-serif}.earlier-open-message strong,.earlier-open-message span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.earlier-open-message span{margin-top:4px;color:#adbdca}.earlier-row:hover{background:#293944}.earlier-dismiss{width:30px;font-size:20px}.ping-mode #rings.earlier-open{justify-content:flex-end}.earlier-open>.ring.ping{display:none}
+/* Hover is local CSS state: no polling, IPC or click-through changes can erase it. */
+.ring:not(.ping):hover:not(:has(.control:hover)):not(:has(.control:focus-visible)):not(.leaving){opacity:.3}
+.ring:not(.ping):has(.control:hover):not(.leaving),.ring:not(.ping):has(.control:focus-visible):not(.leaving){opacity:1}
+.ring{transition:opacity .18s ease,transform .2s ease;border-color:#314353;background:#151f28;color:#e6edf3}
+.ping-mode #rings{justify-content:flex-start}
+.ring.ping{border-radius:16px;border-color:#314757;background:linear-gradient(125deg,#1c2a36,#141f28);padding:12px 46px 12px 13px;box-shadow:0 3px 9px #0005}
+.ping .room-icon{width:42px;height:42px;border:1px solid #41596b;background:#263c4c}
+.ping .name{font-size:11px;line-height:16px;font-weight:600;color:#91b0c7;letter-spacing:.02em}
+.ping-user{font-size:13px;line-height:21px;color:#e8eff5;font-weight:650}
+.ping-preview{color:#b7c8d5;line-height:17px}
+.ping-close{top:10px;right:9px;width:30px;height:30px;border:1px solid #354c5d;border-radius:9px;background:#21313e;color:#b4c9db;transition:background .15s,border-color .15s,color .15s}
+.ping-close:hover{background:#31495d;border-color:#52718a;color:#f1f6fa}
+.ping-close:active{background:#172734}
+.ping-close svg,.earlier-dismiss svg{width:16px;height:16px;pointer-events:none}
+.ping:focus-visible,.ping-close:focus-visible{outline:2px solid #84b9e5;outline-offset:-3px}
+.earlier-dismiss{display:grid;place-items:center;align-self:center;height:30px;border-radius:8px!important}
+.earlier-dismiss:hover{background:#31495d!important;color:#fff}
+.ping-mode #rings.earlier-open{justify-content:flex-start}
+@media(prefers-reduced-motion:reduce){.ring{transition:none}}
+#rings.ring-actions-surface,#rings.ring-visual-surface { display:block; padding:0; overflow:hidden; height:100vh; }
+.call-card { position:absolute; display:flex; align-items:center; gap:12px; padding:5px 93px 5px 13px; border:1px solid #3b5061; border-radius:14px; color:#edf3f8; background:#182632; transition:opacity .13s ease; }
+.call-card .room-icon { width:42px; height:42px; border-radius:12px; border:1px solid #405768; background:#294254; }
+.call-copy { flex:1; min-width:0; }
+.call-label { color:#9bb7ca; font-size:11px; line-height:17px; font-weight:600; }
+.call-copy .name { font-size:14px; font-weight:650; line-height:21px; }
+.ring-actions-surface .control,.page-call { position:absolute; border-radius:11px; }
+.ring-actions-surface .control svg { width:18px; height:18px; }
+.call-card.pointer-through,.action-row.pointer-through button { opacity:.3; }
+.ring-visual-surface .ring-pager { position:absolute; border-radius:9px; background:#1b2a35; padding:5px 9px; color:#c2d2df; font-size:12px; }
+.page-call { color:#e9f2f9; border:1px solid #476172; background:#253b48; cursor:pointer; font:20px/20px "Segoe UI",sans-serif; }
+.page-call:disabled { opacity:.5; }
+.ring.ping { background:#182632; border-color:#3b5061; box-shadow:none; border-radius:14px; }
+.ping-user { color:#edf3f8; font-size:14px; }
+.ping .name { color:#9bb7ca; }
+.call-card,.action-row .control { animation:enter .13s ease-out; }
+@media(prefers-reduced-motion:reduce){ .call-card,.action-row .control { animation:none; transition:none; } }
+
